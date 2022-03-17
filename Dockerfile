@@ -18,7 +18,7 @@ RUN sed "s/PROMPT_ALTERNATIVE=twoline/PROMPT_ALTERNATIVE=oneline/" .bashrc --in-
     gzip -d /usr/share/wordlists/rockyou.txt.gz
 
 # Install stuff not included with kali
-RUN apt-get install -y iputils-ping sshpass
+RUN apt-get install -y iputils-ping sshpass python3-dev
 
 # Install Other Tools
 RUN mkdir tools
@@ -33,6 +33,18 @@ RUN cd tools && \
     git clone https://github.com/ticarpi/jwt_tool && \
     ln -s /root/tools/jwt_tool/jwt_tool.py /usr/bin/jwt_tool && \
     chmod +x /usr/bin/jwt_tool && jwt_tool || exit 0
+
+# RsaCtfTool
+RUN cd tools && \
+    git clone https://github.com/Ganapati/RsaCtfTool && \
+    apt-get install -y libgmp3-dev libmpc-dev && \
+    python3 -m pip install -r RsaCtfTool/requirements.txt && \
+    ln -s /root/tools/RsaCtfTool/RsaCtfTool.py /usr/bin/RsaCtfTool && \
+    chmod +x /usr/bin/RsaCtfTool
+
+# crypto-tools
+RUN cd tools && \
+    git clone https://github.com/laconicwolf/crypto-tools.git
 
 WORKDIR /root
 CMD [ "bash" ]
