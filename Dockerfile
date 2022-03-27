@@ -18,7 +18,7 @@ RUN sed "s/PROMPT_ALTERNATIVE=twoline/PROMPT_ALTERNATIVE=oneline/" .bashrc --in-
     gzip -d /usr/share/wordlists/rockyou.txt.gz
 
 # Install stuff not included with kali
-RUN apt-get install -y iputils-ping sshpass python3-dev
+RUN apt-get install -y iputils-ping sshpass python3-dev rlwrap
 
 # Install Other Tools
 RUN mkdir tools
