@@ -46,5 +46,9 @@ RUN cd tools && \
 RUN cd tools && \
     git clone https://github.com/laconicwolf/crypto-tools.git
 
-WORKDIR /root
+# GitTools
+RUN cd tools && \
+    git clone https://github.com/internetwache/GitTools
+
+WORKDIR /root/data
 CMD [ "bash" ]
