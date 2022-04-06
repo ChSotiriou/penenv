@@ -50,5 +50,15 @@ RUN cd tools && \
 RUN cd tools && \
     git clone https://github.com/internetwache/GitTools
 
+# rustscan
+RUN cd /tmp && \
+    wget https://github.com/RustScan/RustScan/releases/download/2.0.1/rustscan_2.0.1_amd64.deb -O rustscan.deb && \
+    dpkg -i rustscan.deb && rm rustscan.deb
+
+# nmapautomator
+RUN cd tools && \
+    git clone https://github.com/21y4d/nmapAutomator.git && \
+    ln -s $(pwd)/nmapAutomator/nmapAutomator.sh /usr/bin/nmapAutomator
+
 WORKDIR /root/data
 CMD [ "bash" ]
