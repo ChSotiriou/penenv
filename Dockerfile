@@ -18,7 +18,12 @@ RUN sed "s/PROMPT_ALTERNATIVE=twoline/PROMPT_ALTERNATIVE=oneline/" .bashrc --in-
     gzip -d /usr/share/wordlists/rockyou.txt.gz
 
 # Install stuff not included with kali
-RUN apt-get install -y iputils-ping sshpass python3-dev rlwrap
+RUN apt-get -y update && \
+    apt-get install -y  iputils-ping \
+                        sshpass \
+                        python3-dev \
+                        rlwrap \
+                        evil-winrm
 
 # Install Other Tools
 RUN mkdir tools
@@ -59,6 +64,14 @@ RUN cd /tmp && \
 RUN cd tools && \
     git clone https://github.com/21y4d/nmapAutomator.git && \
     ln -s $(pwd)/nmapAutomator/nmapAutomator.sh /usr/bin/nmapAutomator
+
+# SharpCollection
+RUN cd tools && \
+    git clone https://github.com/Flangvik/SharpCollection
+
+# Nuclei
+RUN go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest && \
+    echo 'export PATH=$PATH:~/go/bin' >> ~/.bashrc
 
 WORKDIR /root/data
 CMD [ "bash" ]

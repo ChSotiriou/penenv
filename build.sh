@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t penenv .
+docker build -t christoss/penenv .
