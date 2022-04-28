@@ -2,6 +2,16 @@
 
 > Kali Linux Docker Environment
 
+## Download / Build
+
+```
+# Download from DockerHub
+docker pull christoss/penenv:latest
+
+# Build Locally
+./build.sh
+```
+
 ## Usage
 
 I suggest adding the following functions to your zshrc/bashrc file:
